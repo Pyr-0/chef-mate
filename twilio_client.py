@@ -2,7 +2,7 @@ from twilio.rest import Client
 
 import requests 
 
-url = 'http://hackathons.masterschool.com:3030/whatsapp/getMessages/AC30f338d2988f8dc4ad71849de19f7bd1'
+url = 'http://hackathons.masterschool.com:3030/whatsapp/getMessages/'
 
 header = 'accept: application/json'
 
