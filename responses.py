@@ -1,4 +1,5 @@
 import os
+import time
 import requests
 from dotenv import load_dotenv
 
@@ -60,16 +61,40 @@ def send_message(phone_number, message):
 
     return response.json() if response.status_code == 200 else {"error": "Failed to send message", "status_code": response.status_code}
 
+def process_messages():
+    """Continuously fetch new messages and process them."""
+    seen_messages = set()  # To avoid processing the same message multiple times
+    
+    while True:
+        print("\nChecking for new messages...")
+        messages = get_messages()
+        
+        for msg in messages:
+            message_sid = msg.get("messageSid")
+            message_content = msg.get("data", {}).get("text", "No content")
+
+            if message_sid not in seen_messages:
+                print(f"New Message Received: {message_content}")
+                
+                # Example: Auto-reply
+                sender = msg.get("data", {}).get("from", "Unknown")
+                send_message(sender, f"Auto-reply: Received your message - {message_content}")
+
+                seen_messages.add(message_sid)  # Mark message as processed
+
+        time.sleep(40)  # Wait 5 seconds before fetching again
+process_messages()
+
 # Example usage
 if __name__ == "__main__":
     phone = "whatsapp:+4917647313187"  # Replace with actual WhatsApp number
     message_text = "Hello from Python!"
 
-    print("\nFetching messages...")
-    print(get_messages())
+    # print("\nFetching messages...")
+    # print(get_messages())
 
-    print("\nFetching message status...")
-    print(get_message_status())
+    # print("\nFetching message status...")
+    # print(get_message_status())
 
-    print("\nSending message...")
-    print(send_message(phone, message_text))
+    # print("\nSending message...")
+    # print(send_message(phone, message_text))
