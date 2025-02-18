@@ -52,12 +52,12 @@ def send_message(phone_number, message):
     
     print("\n--- Sending Message ---")
     print(f"Sending request to: {url}")
-    print(f"Payload: {payload}")
+    # print(f"Payload: {payload}")
 
     response = requests.post(url, json=payload, headers=headers)
 
     print(f"Response Status: {response.status_code}")
-    print(f"Response Content: {response.text}")
+    #print(f"Response Content: {response.text}")
 
     return response.json() if response.status_code == 200 else {"error": "Failed to send message", "status_code": response.status_code}
 
