@@ -12,13 +12,13 @@ if response.status_code = 200
 
 
 
-account_sid = 'AC30f338d2988f8dc4ad71849de19f7bd1'
+account_sid = ''
 auth_token = '[AuthToken]'
 client = Client(account_sid, auth_token)
 
 message = client.messages.create(
   from_='whatsapp:+14155238886',
-  content_sid='HXb5b62575e6e4ff6129ad7c8efe1f983e',
+  content_sid='',
   content_variables='{"1":"12/1","2":"3pm"}',
   to='whatsapp:+491737523673'
 )

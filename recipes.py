@@ -1,6 +1,6 @@
 import requests
 
-SPOONACULAR_API_KEY = "a30c673d13ff482fab22ac497bc27b8e"
+SPOONACULAR_API_KEY = ""
 
 
 def get_recipes(ingredients):
